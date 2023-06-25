@@ -1,8 +1,10 @@
+#define WITH_CGRAPH
 #include <graphviz/gvc.h>
 #include <stdio.h>
 #include <stdlib.h>
+#define NO_LAYOUT_OR_RENDERING
 
-// #define NO_LAYOUT_OR_RENDERING
+#define NO_LAYOUT_OR_RENDERING
 
 int main(void) {
 #ifndef NO_LAYOUT_OR_RENDERING
@@ -11,7 +13,7 @@ int main(void) {
 #endif
 
   // Create a simple digraph
-  Agraph_t *g = agopen("g", Agdirected, 0);
+  Agraph_t *g = agread(stdin, NULL);
   Agnode_t *n = agnode(g, "n", 1);
   Agnode_t *m = agnode(g, "m", 1);
   Agedge_t *e = agedge(g, n, m, 0, 1);
@@ -31,8 +33,6 @@ int main(void) {
 
   gvFreeLayout(gvc, g);
 #endif
-
-  agclose(g);
 
   return EXIT_SUCCESS;
 }
